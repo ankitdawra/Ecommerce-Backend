@@ -1,12 +1,31 @@
-import { Controller, Get } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Logger,
+  Post,
+  UnauthorizedException,
+  UseFilters,
+} from '@nestjs/common';
 import { AppService } from './app.service';
+import { catchError, throwError } from 'rxjs';
+import { UserDTO } from './types/user.type';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
+  // @Post('auth/login')
+  // userSignIn(@Body() userDTO: UserDTO) {
+  //   return this.appService.userSignIn(userDTO).pipe(
+  //     catchError((error) => {
+  //       throw new UnauthorizedException(error);
+  //     }),
+  //   );
+  // }
+
+  // @Get('auth/currentUser')
+  // getCurrentUser() {
+  //   return this.appService.getCurrentUser();
+  // }
 }
